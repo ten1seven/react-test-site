@@ -15,21 +15,30 @@
   display: inline-block;
 }
 
-.page-nav a {
+.page-nav__button {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
   color: var(--color-cornsilk);
+  cursor: pointer;
   display: inline-block;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
   padding: 20px 10px;
   text-transform: uppercase;
 }
 
-.page-nav a:focus,
-.page-nav a:hover {
+.page-nav__button:focus,
+.page-nav__button:hover {
   color: #fff;
 }
 
+.page-nav__button.-selected {
+  background-color: #666;
+}
+
 .product-section {
+  background-color: var(--color-cornsilk);
   padding: 80px 0 50px;
 }
 
@@ -38,16 +47,6 @@
   font-size: 30px;
   margin: 0 0 30px 0;
   text-align: center;
-}
-
-.year-round,
-.tank-farm {
-  background-color: #fff;
-}
-
-.seasonal,
-.yeti-clan {
-  background-color: var(--color-cornsilk);
 }
 
 .barrel-aged {

@@ -39,17 +39,29 @@ var Carousel = React.createClass({
   nav
 */
 
-var PageNavLink = React.createClass({
-  clickHandler: function(event) {
-    event.preventDefault();
+var PageNavButton = React.createClass({
+  showProducts: function() {
+    var products = [];
+    var classes = 'product-section ' + this.props.slug;
 
-    console.log( this.props.category );
+    this.props.products.forEach(function(product) {
+      products.push(<ProductListItem image={product.image} name={product.name} desc={product.desc} extra={product.extra} key={product.name} />);
+    });
+
+    ReactDOM.render(
+      <section className={classes}>
+        <div className="wrapper">
+          <h3>{this.props.category}</h3>
+          <ul className="product-list">{products}</ul>
+        </div>
+      </section>
+    , document.querySelector('.products'));
   },
 
   render: function() {
     return (
       <li>
-        <a href="#" onClick={this.clickHandler}>{this.props.category}</a>
+        <button className="page-nav__button" onClick={this.showProducts}>{this.props.category}</button>
       </li>
     );
   }
@@ -59,10 +71,19 @@ var ProductNav = React.createClass({
   render: function() {
     var links = [];
     var lastCategory = null;
+    var productList = this.props.products;
 
-    this.props.products.forEach(function(product) {
+    productList.forEach(function(product) {
       if (product.category !== lastCategory) {
-        links.push(<PageNavLink category={product.category} slug={product.slug} key={product.category} />);
+
+        var category = product.category;
+        var productArray = [];
+
+        productList.forEach(function(product) {
+          if (category === product.category) productArray.push(product);
+        });
+
+        links.push(<PageNavButton category={category} slug={product.categorySlug} products={productArray} key={product.category} />);
       }
       lastCategory = product.category;
     });
@@ -80,14 +101,19 @@ var ProductNav = React.createClass({
 
 
 /*
-  product sections
+  product display
 */
 
 var ProductListItem = React.createClass({
+  showProduct: function(event) {
+    event.preventDefault();
+
+    console.log(this.props.name);
+  },
   render: function() {
     return (
       <li className="product">
-        <a href="#">
+        <a href="#" onClick={this.showProduct}>
           <img alt="" src={this.props.image} />
           <h4 className="sr-only">{this.props.name}</h4>
           <span className="sr-only">{this.props.desc}</span>
@@ -100,56 +126,8 @@ var ProductListItem = React.createClass({
 
 var ProductSection = React.createClass({
   render: function() {
-    var products = [];
-    var category = this.props.category;
-    var classes = 'product-section ' + this.props.slug;
-
-    this.props.products.forEach(function(product) {
-      if (product.category === category) {
-        products.push(<ProductListItem image={product.image} name={product.name} desc={product.desc} extra={product.extra} key={product.name} />);
-      }
-    });
-
     return (
-      <section className={classes}>
-        <div className="wrapper">
-          <h3>{this.props.category}</h3>
-          <ul className="product-list">{products}</ul>
-        </div>
-      </section>
-    );
-  }
-});
-
-var ProductSections = React.createClass({
-  render: function() {
-    var sections = [];
-    var lastCategory = null;
-
-    this.props.products.forEach(function(product) {
-      if (product.category !== lastCategory) {
-        sections.push(<ProductSection products={BEERS} category={product.category} slug={product.categorySlug} key={product.category} />);
-      }
-      lastCategory = product.category;
-    });
-
-    return (
-      <div className="products">
-        <h2 className="sr-only">Products</h2>
-        {sections}
-      </div>
-    );
-  }
-});
-
-var Content = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <Carousel slides={SLIDES} />
-        <ProductNav products={BEERS} />
-        <ProductSections products={BEERS} />
-      </div>
+      <div className="products" />
     );
   }
 });
@@ -161,48 +139,19 @@ var Content = React.createClass({
   --------------------
 */
 
+var Content = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <Carousel slides={SLIDES} />
+        <ProductNav products={BEERS} />
+        <ProductSection />
+      </div>
+    );
+  }
+});
+
 ReactDOM.render(
   <Content />,
   document.getElementById('content')
 );
-
-
-/*
-  --------------------
-  font rendering
-  --------------------
-*/
-
-var oswald400 = new FontFaceObserver('Oswald', {
-  weight: 400
-});
-
-var sourceSans300 = new FontFaceObserver('Source Sans Pro', {
-  weight: 300
-});
-
-var sourceSans400 = new FontFaceObserver('Source Sans Pro', {
-  weight: 400
-});
-
-var sourceSans700 = new FontFaceObserver('Source Sans Pro', {
-  weight: 700
-});
-
-Promise.all([
-  sourceSans300.check(),
-  sourceSans400.check(),
-  sourceSans700.check()
-]).then(function () {
-  document.body.classList.add('sourceSansPro-loaded');
-}, function () {
-  document.body.classList.add('sourceSansPro-unavailable');
-});
-
-Promise.all([
-  oswald400.check()
-]).then(function () {
-  document.body.classList.add('oswald-loaded');
-}, function () {
-  document.body.classList.add('oswald-unavailable');
-});

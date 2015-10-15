@@ -1,1 +1,201 @@
-"use strict";var Slide=React.createClass({displayName:"Slide",render:function(){return React.createElement("img",{alt:"",src:this.props.image})}}),Carousel=React.createClass({displayName:"Carousel",render:function(){var e=[];return this.props.slides.forEach(function(t){e.push(React.createElement(Slide,{image:t.image,key:t.name}))}),React.createElement("section",{className:"carousel"},e)}}),PageNavLink=React.createClass({displayName:"PageNavLink",clickHandler:function(e){e.preventDefault(),console.log(this.props.category)},render:function(){return React.createElement("li",null,React.createElement("a",{href:"#",onClick:this.clickHandler},this.props.category))}}),ProductNav=React.createClass({displayName:"ProductNav",render:function(){var e=[],t=null;return this.props.products.forEach(function(a){a.category!==t&&e.push(React.createElement(PageNavLink,{category:a.category,slug:a.slug,key:a.category})),t=a.category}),React.createElement("nav",{className:"page-nav"},React.createElement("div",{className:"wrapper"},React.createElement("h2",{className:"sr-only"},"Page Navigation"),React.createElement("ul",null,e)))}}),ProductListItem=React.createClass({displayName:"ProductListItem",render:function(){return React.createElement("li",{className:"product"},React.createElement("a",{href:"#"},React.createElement("img",{alt:"",src:this.props.image}),React.createElement("h4",{className:"sr-only"},this.props.name),React.createElement("span",{className:"sr-only"},this.props.desc),React.createElement("span",{className:"product__extra"},this.props.extra)))}}),ProductSection=React.createClass({displayName:"ProductSection",render:function(){var e=[],t=this.props.category,a="product-section "+this.props.slug;return this.props.products.forEach(function(a){a.category===t&&e.push(React.createElement(ProductListItem,{image:a.image,name:a.name,desc:a.desc,extra:a.extra,key:a.name}))}),React.createElement("section",{className:a},React.createElement("div",{className:"wrapper"},React.createElement("h3",null,this.props.category),React.createElement("ul",{className:"product-list"},e)))}}),ProductSections=React.createClass({displayName:"ProductSections",render:function(){var e=[],t=null;return this.props.products.forEach(function(a){a.category!==t&&e.push(React.createElement(ProductSection,{products:BEERS,category:a.category,slug:a.categorySlug,key:a.category})),t=a.category}),React.createElement("div",{className:"products"},React.createElement("h2",{className:"sr-only"},"Products"),e)}}),Content=React.createClass({displayName:"Content",render:function(){return React.createElement("div",null,React.createElement(Carousel,{slides:SLIDES}),React.createElement(ProductNav,{products:BEERS}),React.createElement(ProductSections,{products:BEERS}))}});ReactDOM.render(React.createElement(Content,null),document.getElementById("content"));var oswald400=new FontFaceObserver("Oswald",{weight:400}),sourceSans300=new FontFaceObserver("Source Sans Pro",{weight:300}),sourceSans400=new FontFaceObserver("Source Sans Pro",{weight:400}),sourceSans700=new FontFaceObserver("Source Sans Pro",{weight:700});Promise.all([sourceSans300.check(),sourceSans400.check(),sourceSans700.check()]).then(function(){document.body.classList.add("sourceSansPro-loaded")},function(){document.body.classList.add("sourceSansPro-unavailable")}),Promise.all([oswald400.check()]).then(function(){document.body.classList.add("oswald-loaded")},function(){document.body.classList.add("oswald-unavailable")});
+/*
+  --------------------
+  carousel
+  --------------------
+*/
+
+"use strict";
+
+var Slide = React.createClass({
+  displayName: "Slide",
+
+  render: function render() {
+    return React.createElement("img", { alt: "", src: this.props.image });
+  }
+});
+
+var Carousel = React.createClass({
+  displayName: "Carousel",
+
+  render: function render() {
+    var slides = [];
+
+    this.props.slides.forEach(function (slide) {
+      slides.push(React.createElement(Slide, { image: slide.image, key: slide.name }));
+    });
+
+    return React.createElement(
+      "section",
+      { className: "carousel" },
+      slides
+    );
+  }
+});
+
+/*
+  --------------------
+  products
+  --------------------
+*/
+
+/*
+  nav
+*/
+
+var PageNavButton = React.createClass({
+  displayName: "PageNavButton",
+
+  showProducts: function showProducts() {
+    var products = [];
+    var classes = 'product-section ' + this.props.slug;
+
+    this.props.products.forEach(function (product) {
+      products.push(React.createElement(ProductListItem, { image: product.image, name: product.name, desc: product.desc, extra: product.extra, key: product.name }));
+    });
+
+    ReactDOM.render(React.createElement(
+      "section",
+      { className: classes },
+      React.createElement(
+        "div",
+        { className: "wrapper" },
+        React.createElement(
+          "h3",
+          null,
+          this.props.category
+        ),
+        React.createElement(
+          "ul",
+          { className: "product-list" },
+          products
+        )
+      )
+    ), document.querySelector('.products'));
+  },
+
+  render: function render() {
+    return React.createElement(
+      "li",
+      null,
+      React.createElement(
+        "button",
+        { className: "page-nav__button", onClick: this.showProducts },
+        this.props.category
+      )
+    );
+  }
+});
+
+var ProductNav = React.createClass({
+  displayName: "ProductNav",
+
+  render: function render() {
+    var links = [];
+    var lastCategory = null;
+    var productList = this.props.products;
+
+    productList.forEach(function (product) {
+      if (product.category !== lastCategory) {
+
+        var category = product.category;
+        var productArray = [];
+
+        productList.forEach(function (product) {
+          if (category === product.category) productArray.push(product);
+        });
+
+        links.push(React.createElement(PageNavButton, { category: category, slug: product.categorySlug, products: productArray, key: product.category }));
+      }
+      lastCategory = product.category;
+    });
+
+    return React.createElement(
+      "nav",
+      { className: "page-nav" },
+      React.createElement(
+        "div",
+        { className: "wrapper" },
+        React.createElement(
+          "h2",
+          { className: "sr-only" },
+          "Page Navigation"
+        ),
+        React.createElement(
+          "ul",
+          null,
+          links
+        )
+      )
+    );
+  }
+});
+
+/*
+  product display
+*/
+
+var ProductListItem = React.createClass({
+  displayName: "ProductListItem",
+
+  showProduct: function showProduct(event) {
+    event.preventDefault();
+
+    console.log(this.props.name);
+  },
+  render: function render() {
+    return React.createElement(
+      "li",
+      { className: "product" },
+      React.createElement(
+        "a",
+        { href: "#", onClick: this.showProduct },
+        React.createElement("img", { alt: "", src: this.props.image }),
+        React.createElement(
+          "h4",
+          { className: "sr-only" },
+          this.props.name
+        ),
+        React.createElement(
+          "span",
+          { className: "sr-only" },
+          this.props.desc
+        ),
+        React.createElement(
+          "span",
+          { className: "product__extra" },
+          this.props.extra
+        )
+      )
+    );
+  }
+});
+
+var ProductSection = React.createClass({
+  displayName: "ProductSection",
+
+  render: function render() {
+    return React.createElement("div", { className: "products" });
+  }
+});
+
+/*
+  --------------------
+  render
+  --------------------
+*/
+
+var Content = React.createClass({
+  displayName: "Content",
+
+  render: function render() {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement(Carousel, { slides: SLIDES }),
+      React.createElement(ProductNav, { products: BEERS }),
+      React.createElement(ProductSection, null)
+    );
+  }
+});
+
+ReactDOM.render(React.createElement(Content, null), document.getElementById('content'));

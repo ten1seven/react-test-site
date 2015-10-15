@@ -5,6 +5,7 @@
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
+    "gulp-concat": "^2.6.0",
     "gulp-copy": "0.0.2",
     "gulp-cssnano": "^2.0.0",
     "gulp-imagemin": "^2.3.0",
@@ -16,6 +17,7 @@
     "postcss-import": "^7.0.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "what-input": "^1.1.2"
   }
 }

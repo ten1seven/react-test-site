@@ -77,11 +77,53 @@
       </section>
     </footer>
 
-    <script src="assets/scripts/react.js"></script>
-    <script src="assets/scripts/react-dom.js"></script>
+    <script src="assets/scripts/vendor/what-input.js"></script>
+    <script src="assets/scripts/vendor/react.js"></script>
+    <script src="assets/scripts/vendor/react-dom.js"></script>
     <script src="assets/scripts/vendor/fontfaceobserver.js"></script>
     <script src="assets/scripts/data.js"></script>
     <script src="assets/scripts/index.js"></script>
+    <script>
+      /*
+        --------------------
+        font rendering
+        --------------------
+      */
+
+      var oswald400 = new FontFaceObserver('Oswald', {
+        weight: 400
+      });
+
+      var sourceSans300 = new FontFaceObserver('Source Sans Pro', {
+        weight: 300
+      });
+
+      var sourceSans400 = new FontFaceObserver('Source Sans Pro', {
+        weight: 400
+      });
+
+      var sourceSans700 = new FontFaceObserver('Source Sans Pro', {
+        weight: 700
+      });
+
+      Promise.all([
+        sourceSans300.check(),
+        sourceSans400.check(),
+        sourceSans700.check()
+      ]).then(function () {
+        document.body.classList.add('sourceSansPro-loaded');
+      }, function () {
+        document.body.classList.add('sourceSansPro-unavailable');
+      });
+
+      Promise.all([
+        oswald400.check()
+      ]).then(function () {
+        document.body.classList.add('oswald-loaded');
+      }, function () {
+        document.body.classList.add('oswald-unavailable');
+      });
+    </script>
 
   </body>
 </html>

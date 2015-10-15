@@ -40,3 +40,15 @@ a:focus,
 a:hover {
   color: #000;
 }
+
+a:focus,
+button:focus {
+  outline: 3px solid #06c;
+}
+
+[data-whatinput='mouse'] a:focus,
+[data-whatinput='mouse'] button:focus,
+[data-whatinput='touch'] a:focus,
+[data-whatinput='touch'] button:focus {
+  outline: none;
+}

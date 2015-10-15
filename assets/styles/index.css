@@ -251,6 +251,7 @@ button:focus {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 100;
 }
 
 .site-logo {
@@ -347,6 +348,47 @@ button:focus {
   height: auto;
   max-width: 100%;
 }
+/*
+  ---------------
+  animations
+  ---------------
+*/
+
+@-webkit-keyframes fadeProduct {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes fadeProduct {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+
+/*
+  ---------------
+  navigation
+  ---------------
+*/
+
 .page-nav {
   background-color: #17222a;
   padding: 20px 0;
@@ -386,6 +428,18 @@ button:focus {
   background-color: #666;
 }
 
+
+/*
+  ---------------
+  products
+  ---------------
+*/
+
+.products {
+  background-color: #fff6dc;
+  min-height: 490px;
+}
+
 .product-section {
   background-color: #fff6dc;
   padding: 80px 0 50px;
@@ -421,18 +475,39 @@ button:focus {
   line-height: 0;
   list-style: none;
   margin: 0 0 0 -30px;
+  min-height: 217px;
   padding: 0;
   text-align: center;
 }
 
 .product {
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-name: fadeProduct;
+          animation-name: fadeProduct;
+  -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+          animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
   display: inline-block;
   font-size: 12px;
   line-height: 1;
   margin: 0;
+  opacity: 0;
   padding: 0 0 30px 30px;
   width: 25%;
 }
+
+.product:nth-child(1) { -webkit-animation-delay: 100ms; animation-delay: 100ms; }
+.product:nth-child(2) { -webkit-animation-delay: 150ms; animation-delay: 150ms; }
+.product:nth-child(3) { -webkit-animation-delay: 200ms; animation-delay: 200ms; }
+.product:nth-child(4) { -webkit-animation-delay: 250ms; animation-delay: 250ms; }
+.product:nth-child(5) { -webkit-animation-delay: 300ms; animation-delay: 300ms; }
+.product:nth-child(6) { -webkit-animation-delay: 350ms; animation-delay: 350ms; }
+.product:nth-child(7) { -webkit-animation-delay: 400ms; animation-delay: 400ms; }
+.product:nth-child(8) { -webkit-animation-delay: 450ms; animation-delay: 450ms; }
+.product:nth-child(9) { -webkit-animation-delay: 500ms; animation-delay: 500ms; }
+.product:nth-child(10) { -webkit-animation-delay: 550ms; animation-delay: 550ms; }
 
 .product a {
   display: block;

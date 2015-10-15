@@ -1,23 +1,19 @@
+//import { Router, Route, Link } from 'react-router';
+
 /*
   --------------------
   carousel
   --------------------
 */
 
-var Slide = React.createClass({
-  render: function() {
-    return (
-      <img alt="" src={this.props.image} />
-    );
-  }
-});
+function Slide(props) {
+  return (<img alt="" src={props.image} />);
+}
 
 var Carousel = React.createClass({
   render: function() {
-    var slides = [];
-
-    this.props.slides.forEach(function(slide) {
-      slides.push(<Slide image={slide.image} key={slide.name} />);
+    var slides = this.props.slides.map(function(slide) {
+      return (<Slide image={slide.image} key={slide.name} />);
     });
 
     return (
@@ -41,11 +37,10 @@ var Carousel = React.createClass({
 
 var PageNavButton = React.createClass({
   showProducts: function() {
-    var products = [];
     var classes = 'product-section ' + this.props.slug;
 
-    this.props.products.forEach(function(product) {
-      products.push(<ProductListItem image={product.image} name={product.name} desc={product.desc} extra={product.extra} key={product.name} />);
+    var products = this.props.products.map(function(product) {
+      return (<ProductListItem image={product.image} name={product.name} desc={product.desc} extra={product.extra} key={product.name} />);
     });
 
     ReactDOM.render(
@@ -114,7 +109,7 @@ var ProductListItem = React.createClass({
     return (
       <li className="product">
         <a href="#" onClick={this.showProduct}>
-          <img alt="" src={this.props.image} />
+          <img alt="" src={this.props.image} height="300" width="300" />
           <h4 className="sr-only">{this.props.name}</h4>
           <span className="sr-only">{this.props.desc}</span>
           <span className="product__extra">{this.props.extra}</span>

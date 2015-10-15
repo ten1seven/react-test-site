@@ -144,7 +144,7 @@ var ProductListItem = React.createClass({
       React.createElement(
         "a",
         { href: "#", onClick: this.showProduct },
-        React.createElement("img", { alt: "", src: this.props.image }),
+        React.createElement("img", { alt: "", src: this.props.image, height: "300", width: "300" }),
         React.createElement(
           "h4",
           { className: "sr-only" },

@@ -103,7 +103,7 @@ var ProductListItem = React.createClass({
   showProduct: function(event) {
     event.preventDefault();
 
-    console.log(this.props.name);
+    alert(this.props.name);
   },
   render: function() {
     return (

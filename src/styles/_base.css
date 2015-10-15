@@ -6,18 +6,28 @@
 
 body {
   background-color: var(--color-gallery);
-  font-family: var(--font-main);
+  font-family: sans-serif;
   font-weight: var(--font-light);
   margin: 0;
   padding: 0;
+}
+
+body.sourceSansPro-loaded {
+  font-family: var(--font-main);
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-alt);
   text-transform: uppercase;
+}
+
+.oswald-loaded h1,
+.oswald-loaded h2,
+.oswald-loaded h3,
+.oswald-loaded h4 {
+  font-family: var(--font-alt);
 }
 
 a {

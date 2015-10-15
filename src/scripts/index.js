@@ -40,10 +40,16 @@ var Carousel = React.createClass({
 */
 
 var PageNavLink = React.createClass({
+  clickHandler: function(event) {
+    event.preventDefault();
+
+    console.log( this.props.category );
+  },
+
   render: function() {
     return (
       <li>
-        <a href="#TODO">{this.props.category}</a>
+        <a href="#" onClick={this.clickHandler}>{this.props.category}</a>
       </li>
     );
   }
@@ -159,3 +165,44 @@ ReactDOM.render(
   <Content />,
   document.getElementById('content')
 );
+
+
+/*
+  --------------------
+  font rendering
+  --------------------
+*/
+
+var oswald400 = new FontFaceObserver('Oswald', {
+  weight: 400
+});
+
+var sourceSans300 = new FontFaceObserver('Source Sans Pro', {
+  weight: 300
+});
+
+var sourceSans400 = new FontFaceObserver('Source Sans Pro', {
+  weight: 400
+});
+
+var sourceSans700 = new FontFaceObserver('Source Sans Pro', {
+  weight: 700
+});
+
+Promise.all([
+  sourceSans300.check(),
+  sourceSans400.check(),
+  sourceSans700.check()
+]).then(function () {
+  document.body.classList.add('sourceSansPro-loaded');
+}, function () {
+  document.body.classList.add('sourceSansPro-unavailable');
+});
+
+Promise.all([
+  oswald400.check()
+]).then(function () {
+  document.body.classList.add('oswald-loaded');
+}, function () {
+  document.body.classList.add('oswald-unavailable');
+});

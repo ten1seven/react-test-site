@@ -1,4 +1,7 @@
 :root {
+  /*
+    colors
+  */
   --color-mirage: #17222a;
   --color-alabaster: #fbfbfb;
   --color-gallery: #eee;
@@ -10,11 +13,17 @@
   --color-brown-tumbleweed: #3d2814;
   --color-lust: #ee3124;
 
+  /*
+    fonts
+  */
   --font-main: 'Source Sans Pro', sans-serif;
   --font-alt: 'Oswald', sans-serif;
   --font-bold: 700;
   --font-normal: 400;
   --font-light: 300;
 
+  /*
+    dimensions
+  */
   --header-height: 65px;
 }

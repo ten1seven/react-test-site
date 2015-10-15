@@ -1,0 +1,111 @@
+.page-nav {
+  background-color: var(--color-mirage);
+  padding: 20px 0;
+}
+
+.page-nav ul {
+  font-size: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.page-nav li {
+  display: inline-block;
+}
+
+.page-nav a {
+  color: var(--color-cornsilk);
+  display: inline-block;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 20px 10px;
+  text-transform: uppercase;
+}
+
+.page-nav a:focus,
+.page-nav a:hover {
+  color: #fff;
+}
+
+.product-section {
+  padding: 80px 0 50px;
+}
+
+.product-section h3 {
+  color: var(--color-davys-grey);
+  font-size: 30px;
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+.year-round,
+.tank-farm {
+  background-color: #fff;
+}
+
+.seasonal,
+.yeti-clan {
+  background-color: var(--color-cornsilk);
+}
+
+.barrel-aged {
+  background-color: var(--color-brown-tumbleweed);
+}
+
+.barrel-aged h3,
+.barrel-aged .product__extra {
+  color: var(--color-fawn);
+}
+
+.product-section::after {
+	clear: both;
+	content: '';
+	display: table;
+}
+
+.product-list {
+  font-size: 0;
+  line-height: 0;
+  list-style: none;
+  margin: 0 0 0 -30px;
+  padding: 0;
+  text-align: center;
+}
+
+.product {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  margin: 0;
+  padding: 0 0 30px 30px;
+  width: 25%;
+}
+
+.product a {
+  display: block;
+}
+
+.product a:focus img,
+.product a:hover img {
+  transform: scale(.9);
+}
+
+.product img {
+  height: auto;
+  transition: all 200ms ease;
+  width: 100%;
+}
+
+.product__extra {
+  color: var(--color-davys-grey);
+  display: block;
+  font-size: 15px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.product__extra:empty {
+  display: none;
+}

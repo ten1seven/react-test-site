@@ -1,0 +1,8 @@
+.carousel {
+  line-height: 0;
+}
+
+.carousel img {
+  height: auto;
+  max-width: 100%;
+}

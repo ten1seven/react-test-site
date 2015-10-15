@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-gallery);
+  font-family: var(--font-main);
+  font-weight: var(--font-light);
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-alt);
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--color-lust);
+  text-decoration: none;
+  transition: all 100ms ease;
+}
+
+a:focus,
+a:hover {
+  color: #000;
+}

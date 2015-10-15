@@ -1,0 +1,54 @@
+.site-header {
+  background-color: #fff;
+  box-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  height: var(--header-height);
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.site-logo {
+  background: var(--color-lust) url('../images/logo.png') no-repeat;
+  background-size: cover;
+  display: block;
+  float: left;
+  height: 55px;
+  margin: 5px 0 0 20px;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  width: 91px;
+}
+
+.site-nav {
+  float: right;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav li {
+  float: left;
+}
+
+.site-nav a {
+  color: var(--color-tundora);
+  display: block;
+  font-size: 11px;
+  font-weight: var(--font-normal);
+  line-height: var(--header-height);
+  padding: 0 15px;
+  text-transform: uppercase;
+}
+
+.site-nav a:focus,
+.site-nav a:hover {
+  background-color: var(--color-lust);
+  color: var(--color-alabaster);
+}

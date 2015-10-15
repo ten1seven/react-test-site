@@ -1,0 +1,64 @@
+.grid__row {
+  list-style: none;
+  margin: 0 0 0 -30px;
+  padding: 0;
+}
+
+.grid__row::after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+[class*='row--'] {
+  float: left;
+  padding-left: 30px;
+}
+
+.row--1 {
+  width: 8.3334%;
+}
+
+.row--2 {
+  width: 16.6667%;
+}
+
+.row--3 {
+  width: 25%;
+}
+
+.row--4 {
+  width: 33.3334%;
+}
+
+.row--5 {
+  width: 41.6667%;
+}
+
+.row--6 {
+  width: 50%;
+}
+
+.row--7 {
+  width: 58.3334%;
+}
+
+.row--8 {
+  width: 66.6667%;
+}
+
+.row--9 {
+  width: 75%;
+}
+
+.row--10 {
+  width: 83.3334%;
+}
+
+.row--11 {
+  width: 91.6667%;
+}
+
+.row--12 {
+  width: 100%
+}

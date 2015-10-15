@@ -13,10 +13,12 @@
     "gulp-plumber": "^1.0.1",
     "gulp-postcss": "^6.0.1",
     "gulp-uglify": "^1.4.2",
+    "history": "^1.12.5",
     "postcss-css-variables": "^0.5.0",
     "postcss-import": "^7.0.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-router": "^1.0.0-rc3",
     "require-dir": "^0.3.0",
     "what-input": "^1.1.2"
   }

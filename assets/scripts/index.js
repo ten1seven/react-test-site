@@ -6,22 +6,16 @@
 
 "use strict";
 
-var Slide = React.createClass({
-  displayName: "Slide",
-
-  render: function render() {
-    return React.createElement("img", { alt: "", src: this.props.image });
-  }
-});
+function Slide(props) {
+  return React.createElement("img", { alt: "", src: props.image });
+}
 
 var Carousel = React.createClass({
   displayName: "Carousel",
 
   render: function render() {
-    var slides = [];
-
-    this.props.slides.forEach(function (slide) {
-      slides.push(React.createElement(Slide, { image: slide.image, key: slide.name }));
+    var slides = this.props.slides.map(function (slide) {
+      return React.createElement(Slide, { image: slide.image, key: slide.name });
     });
 
     return React.createElement(
@@ -46,11 +40,10 @@ var PageNavButton = React.createClass({
   displayName: "PageNavButton",
 
   showProducts: function showProducts() {
-    var products = [];
     var classes = 'product-section ' + this.props.slug;
 
-    this.props.products.forEach(function (product) {
-      products.push(React.createElement(ProductListItem, { image: product.image, name: product.name, desc: product.desc, extra: product.extra, key: product.name }));
+    var products = this.props.products.map(function (product) {
+      return React.createElement(ProductListItem, { image: product.image, name: product.name, desc: product.desc, extra: product.extra, key: product.name });
     });
 
     ReactDOM.render(React.createElement(

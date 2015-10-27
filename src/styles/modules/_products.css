@@ -49,17 +49,29 @@
   display: inline-block;
   font-size: 28px;
   font-weight: 700;
-  padding: 20px 10px;
+  margin: 0 10px;
+  padding: 20px 0;
+  position: relative;
   text-transform: uppercase;
 }
 
-.page-nav__button:focus,
-.page-nav__button:hover {
-  color: #fff;
+.page-nav__button::after {
+  background-color: var(--color-cornsilk);
+  bottom: 10px;
+  content: '';
+  display: block;
+  height: 2px;
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  transform: translateX(-50%);
+  transition: all 300ms var(--bounce);
+  width: 0;
 }
 
-.page-nav__button.-selected {
-  background-color: #666;
+.page-nav__button.-selected::after {
+  opacity: 1;
+  width: 100%;
 }
 
 
@@ -68,11 +80,6 @@
   products
   ---------------
 */
-
-.products {
-  background-color: var(--color-cornsilk);
-  min-height: 490px;
-}
 
 .product-section {
   background-color: var(--color-cornsilk);
@@ -115,7 +122,7 @@
   animation-duration: 300ms;
   animation-fill-mode: forwards;
   animation-name: fadeProduct;
-  animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  animation-timing-function: var(--bounce);
   display: inline-block;
   font-size: 12px;
   line-height: 1;

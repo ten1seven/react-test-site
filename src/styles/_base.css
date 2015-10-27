@@ -33,7 +33,9 @@ h4 {
 a {
   color: var(--color-lust);
   text-decoration: none;
-  transition: all 100ms ease;
+  transition:
+    background 100ms ease,
+    color 100ms ease;
 }
 
 a:focus,
@@ -41,8 +43,7 @@ a:hover {
   color: #000;
 }
 
-a:focus,
-button:focus {
+*:focus {
   outline: 3px solid #06c;
 }
 
